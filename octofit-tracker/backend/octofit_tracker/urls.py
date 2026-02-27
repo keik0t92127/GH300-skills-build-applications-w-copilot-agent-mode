@@ -34,18 +34,6 @@ router.register(r'activities', ActivityViewSet)
 router.register(r'leaderboard', LeaderboardViewSet)
 router.register(r'workouts', WorkoutViewSet)
 
-# Determine base URL based on environment
-codespace_name = os.environ.get('CODESPACE_NAME')
-if codespace_name:
-    base_url = f"https://{codespace_name}-8000.app.github.dev"
-else:
-    base_url = "http://localhost:8000"
-
-# Set ALLOWED_HOSTS in settings based on environment
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-if codespace_name:
-    ALLOWED_HOSTS.append(f"{codespace_name}-8000.app.github.dev")
-
 urlpatterns = [
     path('', api_root, name='api-root'),
     path('admin/', admin.site.urls),
